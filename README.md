@@ -6,7 +6,7 @@ Ce dépôt contient la solution complète développée pour le projet **SecurEve
 
 Voici le détail des étapes de développement réalisées pour répondre au cahier des charges :
 
-### Lundi & Mardi : Socle Technique et Sécurité (Priorité 1)
+### Lundi & Mardi & Mercredi : Socle Technique et Sécurité (Priorité 1)
 - **Initialisation** : Mise en place de Symfony 7 avec l'architecture MVC.
 - **Modélisation** : Création des entités `User`, `Event` et `Reservation` avec migrations Doctrine.
 - **Sécurité** : 
@@ -15,16 +15,14 @@ Voici le détail des étapes de développement réalisées pour répondre au cah
     - Gestion des 3 rôles : `Visiteur` (anonyme), `Participant` (ROLE_USER), `Administrateur` (ROLE_ADMIN).
     - Protection systématique contre les failles CSRF sur les formulaires d'inscription et de réservation.
 
-### Mercredi : Fonctionnalités Métier & Dashboard
+### Jeudi : Fonctionnalités Métier & Dashboard
 - **Catalogue & Détails** : Développement des vues Twig pour la consultation des événements.
 - **Système de Réservation** : Création d'un `ReservationService` pour gérer les inscriptions, vérifiant en temps réel la capacité maximale et empêchant les doublons.
 - **Espace Admin** : Génération des CRUD sécurisés pour permettre aux administrateurs de piloter les événements.
 
-### Jeudi : Scope Optionnel - Organisation & Algorithmique
+### Vendredi : Scope Optionnel
 - **Gestion des Catégories** : Ajout de l'entité `Category` et liaison ManyToOne avec `Event`. Mise en place de filtres dynamiques sur le catalogue (Conférences, CTF, Workshops).
 - **Algorithme d'Exclusion (LIFO)** : Développement d'une logique complexe dans le contrôleur d'édition : si un administrateur réduit la capacité d'un événement, le système supprime automatiquement les dernières réservations effectuées pour respecter la nouvelle limite, avec notification par Flash Messages.
-
-### Vendredi : Scope Optionnel - UX & Internationalisation
 - **Géolocalisation & Maps** :
     - Extension de l'entité `User` pour inclure une adresse.
     - Intégration d'un module d'itinéraire Google Maps sur la page de détails des événements, pré-rempli avec l'adresse du participant.
