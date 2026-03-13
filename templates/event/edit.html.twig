@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="max-w-2xl mx-auto">
+    <div class="mb-6">
+        <a href="{{ path('app_admin_events') }}" class="text-slate-400 hover:text-white text-sm">← Retour à la liste</a>
+        <h1 class="text-3xl font-bold text-white mt-2">
+            {{ event.id ? 'Modifier l\'événement' : 'Créer un événement' }}
+        </h1>
+    </div>
+
+    <div class="bg-slate-900 border border-slate-700 p-8 rounded-xl shadow-xl">
+        {{ form_start(form) }}
+            <div class="space-y-6">
+                {{ form_widget(form) }}
+                <button type="submit" class="w-full bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 rounded-lg transition">
+                    {{ event.id ? 'Mettre à jour' : 'Enregistrer' }}
+                </button>
+            </div>
+        {{ form_end(form) }}
+    </div>
+</div>
+{% endblock %}

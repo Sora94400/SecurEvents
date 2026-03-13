@@ -1,0 +1,47 @@
+{# templates/event/catalog.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="space-y-8">
+    <div class="text-center">
+        <h1 class="text-4xl font-extrabold text-white mb-4">Catalogue des Événements</h1>
+        <p class="text-slate-400">Découvrez nos prochaines conférences et workshops en cybersécurité.</p>
+    </div>
+
+    <div class="flex flex-wrap justify-center gap-2 mb-8">
+        <a href="{{ path('app_events_catalog') }}" 
+           class="px-4 py-2 rounded-full border {{ not currentCategory ? 'bg-amber-500 border-amber-500 text-white' : 'border-slate-700 text-slate-400 hover:border-amber-500' }} transition text-sm font-medium">
+            Tous
+        </a>
+        
+        {% for cat in categories %}
+            <a href="{{ path('app_events_catalog', {category: cat.id}) }}" 
+               class="px-4 py-2 rounded-full border {{ currentCategory == cat.id ? 'bg-amber-500 border-amber-500 text-white' : 'border-slate-700 text-slate-400 hover:border-amber-500' }} transition text-sm font-medium">
+                {{ cat.nom }}
+            </a>
+        {% endfor %}
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% for event in events %}
+            <div class="bg-slate-900 border border-slate-700 rounded-2xl overflow-hidden hover:border-amber-500/50 transition">
+                <div class="p-6">
+                    <span class="text-xs font-bold uppercase tracking-widest text-amber-500">{{ event.category ? event.category.nom : 'Général' }}</span>
+                    <h2 class="text-xl font-bold text-white mt-2">{{ event.titre }}</h2>
+                    <p class="text-slate-400 text-sm mt-3 line-clamp-3">{{ event.description }}</p>
+                    
+                    <div class="mt-6 flex items-center justify-between">
+                        <span class="text-slate-500 text-sm">📅 {{ event.dateDebut|date('d/m/Y') }}</span>
+                        <a href="{{ path('app_event_show', {id: event.id}) }}" class="text-amber-400 font-semibold hover:underline">Voir plus →</a>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="col-span-full text-center py-12">
+                <p class="text-slate-500 italic">Aucun événement ne correspond à cette catégorie pour le moment.</p>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}SecurEvent - Conférences, CTF & Workshops Cybersécurité{% endblock %}
+
+{% block content %}
+<div class="mb-12">
+    <h1 class="text-3xl font-bold text-amber-400 mb-4">Bienvenue sur SecurEvent</h1>
+    <p class="text-slate-400 text-lg">Plateforme de gestion et réservation de conférences, Capture The Flag et workshops autour de la cybersécurité.</p>
+</div>
+
+<h2 class="text-xl font-semibold text-slate-200 mb-6">Événements à venir</h2>
+
+{% if events is empty %}
+    <div class="text-center py-16 bg-slate-800/30 rounded-xl border border-slate-700">
+        <p class="text-slate-400 text-lg">Aucun événement à venir pour le moment.</p>
+    </div>
+{% else %}
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {% for event in events %}
+            <article class="bg-slate-800/50 border border-slate-600 rounded-xl p-6 hover:border-amber-500/50 transition">
+                <h3 class="text-lg font-semibold text-white mb-2">{{ event.titre }}</h3>
+                <p class="text-slate-400 text-sm mb-3 line-clamp-2">{{ event.description }}</p>
+                <div class="space-y-1 text-sm text-slate-500 mb-4">
+                    <p>📅 {{ event.dateDebut|date('d/m/Y H:i') }}</p>
+                    <p>📍 {{ event.lieu }}</p>
+                    <p>Places : {{ event.placesRestantes }} / {{ event.capaciteMax }}</p>
+                </div>
+                <a href="{{ path('app_event_show', { id: event.id }) }}"
+                   class="inline-block text-amber-400 hover:text-amber-300 font-medium">
+                    Voir les détails →
+                </a>
+            </article>
+        {% endfor %}
+    </div>
+{% endif %}
+{% endblock %}

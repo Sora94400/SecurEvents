@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}SecurEvent{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        slate: { 850: '#172033', 950: '#0f1729' }
+                    }
+                }
+            }
+        }
+    </script>
+    {% block stylesheets %}{% endblock %}
+</head>
+<body class="min-h-screen bg-slate-950 text-slate-100 font-sans antialiased">
+    <nav class="bg-slate-900/80 backdrop-blur border-b border-slate-700 sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            <div class="flex items-center justify-between h-14">
+                <a href="{{ path('app_home') }}" class="text-lg font-bold text-amber-400 hover:text-amber-300 transition">
+                    SecurEvent
+                </a>
+
+                <div class="flex items-center gap-6">
+                    <a href="{{ path('app_home') }}" class="text-slate-300 hover:text-white transition text-sm">Accueil</a>
+                    <a href="{{ path('app_events_catalog') }}" class="text-slate-300 hover:text-white transition text-sm">Catalogue</a>
+                    
+                    {% if app.user %}
+                        <a href="{{ path('app_profile_events') }}" class="text-slate-300 hover:text-white transition text-sm">Mes événements</a>
+                        <a href="{{ path('app_profile') }}" class="text-slate-300 hover:text-white transition text-sm">Profil</a>
+                        
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <a href="{{ path('app_admin_events') }}" class="text-amber-400 hover:text-amber-300 font-medium transition text-sm">Admin</a>
+                        {% endif %}
+                        
+                        <a href="{{ path('app_logout') }}" class="text-red-400 hover:text-red-300 transition text-sm">Déconnexion</a>
+                    {% else %}
+                        {# Correction de la balise <a> mal fermée ici #}
+                        <a href="{{ path('app_login') }}" class="text-slate-300 hover:text-white transition text-sm">Connexion</a>
+                        <a href="{{ path('app_register') }}" class="text-amber-400 hover:text-amber-300 font-medium transition text-sm">Inscription</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 py-8">
+        {# Affichage des messages Flash #}
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="mb-4 p-4 rounded-lg {% if label == 'success' %}bg-emerald-500/20 border border-emerald-500/50 text-emerald-300{% elseif label == 'error' %}bg-red-500/20 border border-red-500/50 text-red-300{% else %}bg-slate-700/50 border border-slate-600 text-slate-300{% endif %}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+
+        {# Bloc principal pour le contenu des pages #}
+        {% block content %}
+            {% block body %}{% endblock %}
+        {% endblock %}
+    </main>
+
+    {% block javascripts %}{% endblock %}
+</body>
+</html>
