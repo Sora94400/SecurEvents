@@ -1,7 +1,6 @@
 # 📝 Post-Mortem : Projet SecurEvent
 
 **Date :** 15 Mars 2026  
-**Développeur :** [Ton Nom]  
 **Projet :** Plateforme de gestion d'événements Cybersécurité (ESDI)
 
 ---
