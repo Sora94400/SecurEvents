@@ -45,4 +45,4 @@ Changer de langue via l'URL (`_locale`) ne persistait pas toujours lors de la na
 ---
 
 ## 5. Conclusion
-Le projet SecurEvent m'a permis de passer d'une compréhension théorique de Symfony à une maîtrise pratique de l'écosystème (Services, Sécurité, Twig, Doctrine). La contrainte du cahier des charges sur la sécurité a été un moteur pour approfondir mes connaissances sur la protection des données et la gestion des rôles. Je suis fier de livrer une application complète, esthétique et sécurisée.
+Le projet SecurEvent nous a permis de passer d'une compréhension théorique de Symfony à une maîtrise pratique de l'écosystème (Services, Sécurité, Twig, Doctrine). La contrainte du cahier des charges sur la sécurité a été un moteur pour approfondir nos connaissances sur la protection des données et la gestion des rôles. Nous sommes fier de livrer une application complète, esthétique et sécurisée.
