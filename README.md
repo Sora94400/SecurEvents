@@ -1,6 +1,6 @@
-# 🛡️ Projet SecurEvent - Plateforme de Gestion d'Événements Cybersécurité
+# 🛡️ Projet SecureEvents - Plateforme de Gestion d'Événements Cybersécurité
 
-Ce dépôt contient la solution complète développée pour le projet **SecurEvent** (Module Symfony - ESDI). L'application permet la gestion, la catégorisation et la réservation sécurisée d'événements de type Conférences, CTF et Workshops.
+Ce dépôt contient la solution complète développée pour le projet **SecureEvents** (Module Symfony - ESDI). L'application permet la gestion, la catégorisation et la réservation sécurisée d'événements de type Conférences, CTF et Workshops.
 
 ## 📅 Historique de Résolution du Projet (Semaine du 09/03 au 15/03)
 
@@ -40,7 +40,7 @@ Voici le détail des étapes de développement réalisées pour répondre au cah
 
 ```bash
 git clone <url-du-repo>
-cd SecurEvents
+cd SecureEvents
 ```
 
 ### 2. Installer les dépendances
