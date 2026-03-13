@@ -97,7 +97,7 @@ L'application est disponible sur **http://localhost:8000**.
 
 | Rôle | Email | Mot de passe |
 |------|-------|--------------|
-| Administrateur | `benserade@test.com` | `Benserade.` |
-| Utilisateur | `test@test.com` | `12345678` |
+| Administrateur | `admin@secureevents.com` | `Admin1234.` |
+| Utilisateur | `user1@secureevents` | `User1234.` |
 
 ---

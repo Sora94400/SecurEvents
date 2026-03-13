@@ -81,7 +81,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $roles = $this->roles;
         $roles[] = 'ROLE_USER';
 
-        if ($this->getUserIdentifier() === 'benserade@test.com') {
+        if ($this->getUserIdentifier() === 'admin@secureevents.com') {
         $roles[] = 'ROLE_ADMIN';
         }
 
