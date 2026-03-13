@@ -20,9 +20,7 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class EventController extends AbstractController
 {
-    /**
-     * CATALOGUE PUBLIC AVEC FILTRE (Scope Optionnel)
-     */
+
     #[Route('/events', name: 'app_events_catalog', methods: ['GET'])]
     public function catalog(Request $request, EventRepository $eventRepository, CategoryRepository $categoryRepository): Response
     {
@@ -86,7 +84,6 @@ class EventController extends AbstractController
         return $this->redirectToRoute('app_event_show', ['id' => $event->getId()]);
     }
 
-    /* --- SECTION ADMINISTRATION --- */
 
     #[Route('/admin/events', name: 'app_admin_events', methods: ['GET'])]
     #[IsGranted('ROLE_ADMIN')]
@@ -132,7 +129,7 @@ class EventController extends AbstractController
             $nouvelleCapacite = $event->getCapaciteMax();
             $reservations = $event->getReservations();
 
-            // LOGIQUE D'EXCLUSION (Scope Optionnel)
+    
             if ($nouvelleCapacite < $ancienneCapacite && count($reservations) > $nouvelleCapacite) {
                 $nbAExclure = count($reservations) - $nouvelleCapacite;
             

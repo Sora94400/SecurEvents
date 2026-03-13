@@ -18,7 +18,7 @@ class EventType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        // On définit une classe CSS commune pour tous les champs texte/select
+       
         $inputStyle = 'w-full bg-slate-800 border border-slate-600 rounded-xl p-3 text-white focus:border-amber-500 outline-none transition mt-1';
 
         $builder
