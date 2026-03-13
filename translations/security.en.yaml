@@ -1,0 +1,7 @@
+"Invalid credentials.": "Invalid credentials."
+"Account is disabled.": "Account is disabled."
+"Account is locked.": "Account is locked."
+"Invalid CSRF token.": "Invalid CSRF token. Please try again."
+
+# Login Throttling
+"Too many failed login attempts, please try again in %minutes% minute(s).": "Too many failed login attempts, please try again in %minutes% minute(s)."

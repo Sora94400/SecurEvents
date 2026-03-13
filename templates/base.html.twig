@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="{{ app.request.locale }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,22 +27,51 @@
                 </a>
 
                 <div class="flex items-center gap-6">
-                    <a href="{{ path('app_home') }}" class="text-slate-300 hover:text-white transition text-sm">Accueil</a>
-                    <a href="{{ path('app_events_catalog') }}" class="text-slate-300 hover:text-white transition text-sm">Catalogue</a>
+                    {# Liens de navigation #}
+                    <a href="{{ path('app_home') }}" class="text-slate-300 hover:text-white transition text-sm">
+                        {{ 'menu.home'|trans }}
+                    </a>
+                    <a href="{{ path('app_events_catalog') }}" class="text-slate-300 hover:text-white transition text-sm">
+                        {{ 'menu.catalog'|trans }}
+                    </a>
                     
+                    {# SÉLECTEUR DE LANGUE FONCTIONNEL #}
+                    <div class="flex items-center gap-2 border-l border-slate-700 pl-4">
+                        <a href="{{ path('change_locale', {'locale': 'fr'}) }}" 
+                           class="text-xs transition {{ app.request.locale == 'fr' ? 'text-amber-400 font-bold underline' : 'text-slate-500 hover:text-white' }}">
+                            FR
+                        </a>
+                        <span class="text-slate-700 text-xs">|</span>
+                        <a href="{{ path('change_locale', {'locale': 'en'}) }}" 
+                           class="text-xs transition {{ app.request.locale == 'en' ? 'text-amber-400 font-bold underline' : 'text-slate-500 hover:text-white' }}">
+                            EN
+                        </a>
+                    </div>
+
                     {% if app.user %}
-                        <a href="{{ path('app_profile_events') }}" class="text-slate-300 hover:text-white transition text-sm">Mes événements</a>
-                        <a href="{{ path('app_profile') }}" class="text-slate-300 hover:text-white transition text-sm">Profil</a>
+                        <a href="{{ path('app_profile_events') }}" class="text-slate-300 hover:text-white transition text-sm">
+                            {{ 'menu.my_events'|trans }}
+                        </a>
+                        <a href="{{ path('app_profile') }}" class="text-slate-300 hover:text-white transition text-sm">
+                            {{ 'menu.profile'|trans }}
+                        </a>
                         
                         {% if is_granted('ROLE_ADMIN') %}
-                            <a href="{{ path('app_admin_events') }}" class="text-amber-400 hover:text-amber-300 font-medium transition text-sm">Admin</a>
+                            <a href="{{ path('app_admin_events') }}" class="text-amber-400 hover:text-amber-300 font-medium transition text-sm">
+                                Admin
+                            </a>
                         {% endif %}
                         
-                        <a href="{{ path('app_logout') }}" class="text-red-400 hover:text-red-300 transition text-sm">Déconnexion</a>
+                        <a href="{{ path('app_logout') }}" class="text-red-400 hover:text-red-300 transition text-sm">
+                            {{ 'menu.logout'|trans }}
+                        </a>
                     {% else %}
-                        {# Correction de la balise <a> mal fermée ici #}
-                        <a href="{{ path('app_login') }}" class="text-slate-300 hover:text-white transition text-sm">Connexion</a>
-                        <a href="{{ path('app_register') }}" class="text-amber-400 hover:text-amber-300 font-medium transition text-sm">Inscription</a>
+                        <a href="{{ path('app_login') }}" class="text-slate-300 hover:text-white transition text-sm">
+                            {{ 'menu.login'|trans }}
+                        </a>
+                        <a href="{{ path('app_register') }}" class="text-amber-400 hover:text-amber-300 font-medium transition text-sm">
+                            {{ 'menu.register'|trans }}
+                        </a>
                     {% endif %}
                 </div>
             </div>
@@ -50,7 +79,7 @@
     </nav>
 
     <main class="max-w-6xl mx-auto px-4 sm:px-6 py-8">
-        {# Affichage des messages Flash #}
+        {# Messages Flash #}
         {% for label, messages in app.flashes %}
             {% for message in messages %}
                 <div class="mb-4 p-4 rounded-lg {% if label == 'success' %}bg-emerald-500/20 border border-emerald-500/50 text-emerald-300{% elseif label == 'error' %}bg-red-500/20 border border-red-500/50 text-red-300{% else %}bg-slate-700/50 border border-slate-600 text-slate-300{% endif %}">
@@ -59,7 +88,6 @@
             {% endfor %}
         {% endfor %}
 
-        {# Bloc principal pour le contenu des pages #}
         {% block content %}
             {% block body %}{% endblock %}
         {% endblock %}

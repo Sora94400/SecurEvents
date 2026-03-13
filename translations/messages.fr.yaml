@@ -1,4 +1,8 @@
-Invalid credentials.: 'Identifiants invalides.'
-Account is disabled.: 'Ce compte est désactivé.'
-Account is locked.: 'Ce compte est verrouillé.'
-Invalid CSRF token.: 'Token de sécurité invalide. Veuillez réessayer.'
+menu:
+  home: "Accueil"
+  catalog: "Catalogue"
+  my_events: "Mes événements"
+  profile: "Profil"
+  logout: "Déconnexion"
+  login: "Connexion"
+  register: "Inscription"
