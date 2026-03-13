@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Connexion - SecureEvents{% endblock %}
+{% block title %}{{ 'menu.login'|trans }} - SecureEvents{% endblock %}
 
 {% block content %}
 <div class="min-h-[70vh] flex items-center justify-center px-4">
     <div class="w-full max-w-md">
         <div class="bg-slate-800/50 backdrop-blur border border-slate-600 rounded-2xl shadow-xl p-8">
-            <h1 class="text-2xl font-bold text-amber-400 mb-6 text-center">Connexion</h1>
+            <h1 class="text-2xl font-bold text-amber-400 mb-6 text-center">{{ 'menu.login'|trans }}</h1>
 
             {% if error %}
                 <div class="mb-4 p-3 bg-red-500/20 border border-red-500/50 rounded-lg text-red-300 text-sm">
@@ -17,41 +17,57 @@
             <form method="post" action="{{ path('app_login') }}" class="space-y-5">
                 <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
+                {# Champ Email #}
                 <div>
-                    <label for="email" class="block text-sm font-medium text-slate-300 mb-2">Email</label>
+                    <label for="email" class="block text-sm font-medium text-slate-300 mb-2">
+                        {{ 'login.email_label'|trans }}
+                    </label>
                     <input type="email"
                            id="email"
                            name="email"
                            value="{{ last_username }}"
                            required
                            autofocus
-                           class="w-full px-4 py-2 rounded-lg bg-slate-700/50 border border-slate-600 text-slate-100 placeholder-slate-400 focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition">
+                           placeholder="exemple@mail.com"
+                           class="w-full px-4 py-2 rounded-lg bg-slate-700/50 border border-slate-600 text-slate-100 placeholder-slate-500 focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition">
                 </div>
 
+                {# Champ Mot de passe #}
                 <div>
-                    <label for="password" class="block text-sm font-medium text-slate-300 mb-2">Mot de passe</label>
+                    <label for="password" class="block text-sm font-medium text-slate-300 mb-2">
+                        {{ 'login.password_label'|trans }}
+                    </label>
                     <input type="password"
                            id="password"
                            name="password"
                            required
-                           class="w-full px-4 py-2 rounded-lg bg-slate-700/50 border border-slate-600 text-slate-100 placeholder-slate-400 focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition">
+                           placeholder="••••••••"
+                           class="w-full px-4 py-2 rounded-lg bg-slate-700/50 border border-slate-600 text-slate-100 placeholder-slate-500 focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition">
                 </div>
 
+                {# Bouton de Connexion #}
                 <button type="submit"
-                        class="w-full py-3 px-4 rounded-lg font-medium bg-amber-500 hover:bg-amber-600 text-slate-900 transition">
-                    Se connecter
+                        class="w-full py-3 px-4 rounded-lg font-bold bg-amber-500 hover:bg-amber-600 text-slate-900 transition shadow-lg shadow-amber-500/20 mt-2">
+                    {{ 'login.submit'|trans }}
                 </button>
-                <div class="mt-4 text-center">
-                    <a href="{{ path('app_forgot_password_request') }}" class="text-sm text-slate-400 hover:text-amber-400 transition">
-                        {{ 'login.forgot_password'|trans|default('Mot de passe oublié ?') }}
+
+                {# Lien Mot de passe oublié #}
+                <div class="pt-2 text-center">
+                    <a href="{{ path('app_forgot_password_request') }}" class="text-sm text-slate-400 hover:text-amber-400 transition underline underline-offset-4">
+                        {{ 'login.forgot_password'|trans }}
                     </a>
                 </div>
             </form>
 
-            <p class="mt-6 text-center text-slate-400 text-sm">
-                Pas encore de compte ?
-                <a href="{{ path('app_register') }}" class="text-amber-400 hover:text-amber-300 font-medium">S'inscrire</a>
-            </p>
+            {# Pied de formulaire : Inscription #}
+            <div class="mt-8 pt-6 border-t border-slate-700/50 text-center">
+                <p class="text-slate-400 text-sm">
+                    {{ 'login.no_account'|trans|default('Pas encore de compte ?') }}
+                    <a href="{{ path('app_register') }}" class="text-amber-400 hover:text-amber-300 font-medium ml-1 transition">
+                        {{ 'menu.register'|trans }}
+                    </a>
+                </p>
+            </div>
         </div>
     </div>
 </div>

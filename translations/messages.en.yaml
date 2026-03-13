@@ -1,8 +1,18 @@
 menu:
   home: "Home"
-  catalog: "Events"
+  catalog: "Catalog"
   my_events: "My events"
   profile: "Profile"
   logout: "Logout"
   login: "Login"
   register: "Register"
+
+login:
+  forgot_password: "Did you forget your password?"
+  submit: "Login"
+  email_label: "Email address"
+  password_label: "Password"
+
+reset:
+    password_request_title: "Reset your password"
+    title: "Forgot password"
