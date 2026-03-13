@@ -32,15 +32,72 @@ Voici le détail des étapes de développement réalisées pour répondre au cah
 
 ## 🛠️ Instructions de Mise en Route
 
-### 1. Installation
+---
+
+## Installation
+
+### 1. Cloner le projet
+
+```bash
+git clone <url-du-repo>
+cd SecurEvents
+```
+
+### 2. Installer les dépendances
+
 ```bash
 composer install
-npm install && npm run build
+```
 
-Configuration du .env, puis :
+### 3. Configurer la base de données
 
-Bash
-php bin/console doctrine:database:create
-php bin/console doctrine:migrations:migrate
+Copier le fichier d'environnement et l'adapter si nécessaire :
 
-docker compose up -d 
+```bash
+cp .env .env.local
+```
+
+Par défaut, la base de données est configurée pour PostgreSQL via Docker :
+
+```
+DATABASE_URL="postgresql://seceurevents:secret@127.0.0.1:5432/seceurevents?serverVersion=16&charset=utf8"
+```
+
+### 4. Démarrer PostgreSQL avec Docker
+
+```bash
+docker compose up -d
+```
+
+### 5. Créer la base et appliquer les migrations
+
+```bash
+php bin/console doctrine:migrations:migrate --no-interaction
+```
+
+### 6. Charger les données de test (fixtures)
+
+```bash
+php bin/console doctrine:fixtures:load --no-interaction
+```
+
+### 7. Démarrer le serveur
+
+```bash
+symfony server:start
+# ou
+php -S localhost:8000 -t public
+```
+
+L'application est disponible sur **http://localhost:8000**.
+
+---
+
+## Comptes de test
+
+| Rôle | Email | Mot de passe |
+|------|-------|--------------|
+| Administrateur | `benserade@test.com` | `Benserade.` |
+| Utilisateur | `test@test.com` | `12345678` |
+
+---
